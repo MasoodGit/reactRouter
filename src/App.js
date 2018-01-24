@@ -1,19 +1,29 @@
 import React, { Component } from 'react';
+import {Route,Link, BrowserRouter as Router } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
+
+const Child = ({match}) => (
+ <div>
+  <h3> ID: {match.params.id} </h3> 
+ </div>
+)
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Router>
+        <div>
+          <h2>Accounts</h2>
+          <ul>
+            <li><Link to='/netflix'>netflix</Link></li>
+            <li><Link to='/zillow-group'>Zillow Group</Link></li>
+            <li><Link to='/yahoo'>Yahoo</Link></li>
+            <li><Link to='/modus-create'>Modus create</Link></li>
+          </ul>
+          <Route path='/:id' component={Child} />
+        </div>
+      </Router>
     );
   }
 }
